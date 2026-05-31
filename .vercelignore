@@ -1,0 +1,14 @@
+# Ignore backups and large media folders
+public/backup*
+public/**/backup*
+public/images.bak*
+public/**/images.bak*
+**/backup_before_restore_*
+
+# Ignore git and node modules
+.git
+node_modules
+
+# Ignore large video files (if you prefer to keep videos out of deploy)
+**/*.mov
+**/*.mp4
