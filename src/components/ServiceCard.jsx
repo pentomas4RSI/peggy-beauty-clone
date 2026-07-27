@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
 
+import OptimizedImage from './OptimizedImage'
+import { getServiceBookingUrl } from '../config/booking'
+
 function ServiceCard({ id, order, title, description, features, image }) {
   return (
     <article className="rounded-3xl border border-gray-100 bg-white overflow-hidden shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md">
       {image && (
         <div className="relative h-44 w-full">
-          <img src={image} alt={title} className="h-full w-full object-cover" />
+          <OptimizedImage src={image} alt={title} className="h-full w-full object-cover" />
           <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-sm font-semibold">{order}</div>
         </div>
       )}
@@ -25,9 +28,9 @@ function ServiceCard({ id, order, title, description, features, image }) {
       ) : null}
 
         <div className="mt-6">
-          <Link to={`/contact?service=${encodeURIComponent(title)}`} className="inline-flex items-center gap-2 rounded bg-primary px-4 py-2 text-sm font-semibold text-deep-black">
+          <a href={getServiceBookingUrl(title)} className="inline-flex items-center gap-2 rounded bg-primary px-4 py-2 text-sm font-semibold text-deep-black" target="_blank" rel="noopener noreferrer">
             Book Now
-          </Link>
+          </a>
         </div>
       </div>
     </article>

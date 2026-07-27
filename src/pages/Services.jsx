@@ -1,18 +1,22 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 import ServiceCard from '../components/ServiceCard'
 import servicesData from '../data/services'
 import PageHero from '../components/PageHero'
+import FAQSection from '../components/FAQSection'
+import SEO from '../components/SEO'
+import { getBookingUrl } from '../config/booking'
 
 const services = [
   {
-    title: 'Signature Hair Extensions',
+    title: 'Makeup & Bridal Beauty',
     description:
-      'Custom tape-in, keratin bond, and weft extensions designed to blend seamlessly with your natural hair.',
+      'Professional makeup and bridal beauty services including trials, airbrush options, and long-wear techniques for special events.',
     features: [
-      'Personalized consultation and color match',
-      'Invisible placement for natural movement',
-      'Maintenance, styling, and aftercare guidance',
+      'Bridal makeup and trials',
+      'Airbrush and long-wear application',
+      'Custom colour matching and consultation',
     ],
   },
   {
@@ -76,6 +80,37 @@ const brandLogos = [
 ]
 
 function Services() {
+  useEffect(() => {
+    const ld = {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      'provider': {
+        '@type': 'LocalBusiness',
+        'name': 'Peggy Beauty',
+        'url': window.location.origin
+      },
+      'serviceType': 'Beauty Salon Services',
+      'hasOfferCatalog': {
+        '@type': 'OfferCatalog',
+        'name': 'Service Menu',
+        'itemListElement': services.map(s => ({ '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': s.title, 'description': s.description } }))
+      }
+    }
+
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.className = 'services-json-ld'
+    script.textContent = JSON.stringify(ld)
+    document.head.appendChild(script)
+
+    return () => { if (script && script.parentNode) script.parentNode.removeChild(script) }
+  }, [])
+  const meta = {
+    title: 'Services — Peggy Beauty',
+    description: 'Explore Peggy Beauty services: balayage, colouring, haircuts, bridal makeup, and restorative treatments.',
+    url: 'https://example.com/services',
+    image: '/images/salon/salon-interior.png'
+  }
   const container = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.08 } },
@@ -94,22 +129,25 @@ function Services() {
 
   const faqs = [
     { q: 'Do I need a consultation?', a: 'For new clients we recommend a consultation to discuss goals and assess hair health.' },
-    { q: 'How long do appointments take?', a: 'Appointment length varies by service; colour and extensions can take multiple hours.' },
+    { q: 'How long do appointments take?', a: 'Appointment length varies by service; colour and bridal makeup can take multiple hours.' },
   ]
 
   return (
     <>
-      <PageHero
-        eyebrow="Services"
-        title="Peggy Beauty Service Menu"
-        image="/images/salon/salon-banner.png"
-        showText={false}
-      />
+      <SEO {...meta} />
+      <div className="services-hero">
+        <PageHero
+          eyebrow="Services"
+          title="Peggy Beauty Service Menu"
+          image="/images/salon/salon-interior.png"
+          showText={false}
+        />
+      </div>
 
       <motion.div className="mt-8 mx-auto w-full px-4" variants={fadeIn}>
         <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border border-gray-100 bg-white/80 p-6 md:p-8 shadow-sm">
           <p className="text-base md:text-lg leading-8 text-muted-text max-w-3xl mx-auto">
-            Peggy Beauty offers a curated range of services tailored to your unique hair goals — from precision haircuts and bespoke colour to hand-painted balayage and luxury extensions. Each service includes a personalized consultation, a custom colour or extension plan, and aftercare guidance so your results stay vibrant and healthy.
+            Peggy Beauty offers a curated range of services tailored to your unique hair goals — from precision haircuts and bespoke colour to hand-painted balayage. Each service includes a personalized consultation and aftercare guidance so your results stay vibrant and healthy. See full pricing on our <Link to="/pricing">Pricing</Link> page.
           </p>
         </div>
       </motion.div>
@@ -121,17 +159,17 @@ function Services() {
             <div>
               <p className="text-sm uppercase tracking-wide text-primary">Trusted partners</p>
               <p className="mt-2 text-muted-text max-w-2xl">
-                We work with premium brands and salon partners to deliver safer, more consistent hair extensions, colour, and finish services.
+                We work with premium brands and salon partners to deliver safer, more consistent beauty, colour, and finish services.
               </p>
             </div>
-            <Link to="/contact" className="inline-flex items-center justify-center rounded bg-primary px-4 py-2 text-sm font-semibold text-deep-black">
-              Book a consultation
-            </Link>
+              <a href={getBookingUrl()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded bg-primary px-4 py-2 text-sm font-semibold text-deep-black">
+                Book a consultation
+              </a>
           </div>
 
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-5">
             {brandLogos.map((brand) => (
-              <div key={brand.alt} className="flex items-center justify-center rounded-xl bg-white p-3 shadow-sm">
+              <div key={brand.src} className="flex items-center justify-center rounded-xl bg-white p-3 shadow-sm">
                 <img src={brand.src} alt={brand.alt} className="max-h-12 md:max-h-16 object-contain" loading="lazy" />
               </div>
             ))}
@@ -154,15 +192,7 @@ function Services() {
         {/* Pricing moved to the dedicated Pricing page */}
 
         <motion.section className="mt-12 max-w-3xl" variants={fadeIn}>
-          <h3 className="text-2xl font-heading">Frequently asked</h3>
-          <div className="mt-4 space-y-3">
-            {faqs.map((f) => (
-              <details key={f.q} className="rounded-lg border p-4">
-                <summary className="cursor-pointer font-medium">{f.q}</summary>
-                <p className="mt-2 text-sm text-muted-text">{f.a}</p>
-              </details>
-            ))}
-          </div>
+          <FAQSection />
         </motion.section>
       </motion.section>
     </>

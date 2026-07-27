@@ -19,9 +19,9 @@ const testimonials = [
     image: '/images/gallery/photos/img_3914.png',
   },
   {
-    quote: 'My hair extensions are done perfectly. They blend so naturally and feel amazing.',
+    quote: 'My bridal makeup looked flawless and lasted all day. The team made the process effortless.',
     name: 'Maya Ismail',
-    service: 'Hair extensions',
+    service: 'Bridal Makeup',
     image: '/images/gallery/photos/img_4293.png',
   },
   {

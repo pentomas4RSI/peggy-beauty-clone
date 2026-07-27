@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { getBookingUrl } from '../config/booking'
 
 const stats = [
   { value: 20, suffix: '+', label: 'Years' },
@@ -10,7 +11,7 @@ const stats = [
 ]
 
 const pillars = [
-  'Define Hair Studio',
+  'Bellami',
   'Created by Passion',
   'Built with Love',
   'Driven by Success',
@@ -100,7 +101,7 @@ function FaceBehindBrand() {
             </motion.ul>
 
             <motion.div className="mt-6" variants={fadeUpVariants}>
-              <Link to="/contact" className="inline-flex items-center rounded bg-primary px-4 py-2 text-deep-black font-semibold">Book Now</Link>
+              <a href={getBookingUrl()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded bg-primary px-4 py-2 text-deep-black font-semibold">Book Now</a>
             </motion.div>
           </div>
         </motion.div>

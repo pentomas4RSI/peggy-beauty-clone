@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { getBookingUrl } from '../config/booking'
 
 const stats = ['18+ Years Experience', 'Licensed (Canada)', 'Master Colorist']
 
@@ -62,11 +63,11 @@ function FounderSection() {
             </motion.h2>
 
             <motion.p className="mt-6 leading-8 text-muted-text" variants={fadeUpVariants} style={{ fontSize: 'var(--faq-answer-size)' }}>
-              Peggy Zokaie brings over 18 years of global experience and a refined eye for colour, balance, and natural-looking extensions. Licensed in Canada, Peggy combines technical mastery with a calm, guest-first approach — delivering bespoke colour, seamless extensions, and polished results that suit your lifestyle.
+              Peggy Zokaie brings over 18 years of global experience and a refined eye for colour, balance, and makeup artistry. Licensed in Canada, Peggy combines technical mastery with a calm, guest-first approach — delivering bespoke colour, polished makeup, and results that suit your lifestyle.
             </motion.p>
 
             <motion.p className="mt-6 leading-8 text-muted-text" variants={fadeUpVariants} style={{ fontSize: 'var(--faq-answer-size)' }}>
-              Her vision for Peggy Beauty was to create a welcoming space where every guest can experience true transformation — from balayage blondes and custom hair coloring to premium hair extensions that bring dream hair to life.
+              Her vision for Peggy Beauty was to create a welcoming space where every guest can experience true transformation — from balayage blondes and custom hair coloring to flawless bridal and event makeup that bring dream looks to life.
             </motion.p>
 
             <motion.p className="mt-6 leading-8 text-muted-text" variants={fadeUpVariants} style={{ fontSize: 'var(--faq-answer-size)' }}>
@@ -74,7 +75,7 @@ function FounderSection() {
             </motion.p>
 
             <motion.ul className="mt-8 grid gap-3 text-lg font-heading text-deep-black" variants={fadeUpVariants}>
-              <li>Define Hair Studio</li>
+              <li>Bellami</li>
               <li>Created by Passion</li>
               <li>Built with Love</li>
               <li>Driven by Success</li>
@@ -82,7 +83,7 @@ function FounderSection() {
               </div>
 
             <motion.div className="mt-6 flex gap-3" variants={fadeUpVariants}>
-              <Link to="/contact" className="inline-flex items-center rounded bg-primary px-4 py-2 text-deep-black font-semibold">Book Now</Link>
+              <a href={getBookingUrl()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded bg-primary px-4 py-2 text-deep-black font-semibold">Book Now</a>
               <Link to="/services" className="inline-flex items-center rounded border border-white/30 px-4 py-2">Services</Link>
             </motion.div>
           </div>

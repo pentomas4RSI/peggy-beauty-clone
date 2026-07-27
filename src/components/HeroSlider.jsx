@@ -1,55 +1,24 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay } from 'swiper/modules'
+// import { ChevronDown } from 'lucide-react'
+import OptimizedImage from './OptimizedImage'
+// import { Swiper, SwiperSlide } from 'swiper/react'
+// import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import '../styles/HeroSlider.css'
 const slides = [
-  { image: '/images/slider/1.png', alt: 'Luxury blonde hair transformation', position: 'center 35%' },
-  { image: '/images/slider/2.png', alt: 'Dimensional hair color and salon styling', position: 'center 50%' },
-  { image: '/images/slider/3.png', alt: 'Premium hair extensions result', position: 'center 65%' },
-  { image: '/images/slider/4.png', alt: 'Salon styling and finish', position: 'center 50%' },
+  { image: '/images/slider/main11.png', alt: 'Salon styling and bridal-ready looks', position: 'center 50%' },
+  { image: '/images/slider/main2.png', alt: 'Soft glam makeup and colour services', position: 'center 50%' },
+  { image: '/images/slider/main3.png', alt: 'Dimensional salon colour and finish', position: 'center 50%' },
 ]
-
-const brandLogos = [
-  { src: '/images/brands/oribe.jpg', alt: 'ORIBE' },
-  { src: '/images/brands/loreal.jpg', alt: "L'Oreal" },
-  { src: '/images/brands/bellami.jpg', alt: 'Bellami' },
-  { src: '/images/brands/haircare.jpg', alt: 'Luxury Hair Care' },
-  // additional placeholder logos (replace with real URLs as desired)
-  { src: 'https://via.placeholder.com/260x80?text=Kerastase', alt: 'Kerastase' },
-  { src: 'https://via.placeholder.com/260x80?text=Wella', alt: 'Wella' },
-  { src: 'https://via.placeholder.com/260x80?text=Redken', alt: 'Redken' },
-]
-
-const contentVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.25,
-      staggerChildren: 0.12,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: 'easeOut' },
-  },
-}
 
 function HeroSlider() {
   const [activeSlide, setActiveSlide] = useState(0)
 
   const handleBrandError = (e) => {
     e.currentTarget.onerror = null
-    e.currentTarget.src = '/images/brands/salon-logo.jpg'
+    e.currentTarget.src = '/images/brands/loreal.jpg'
   }
 
   const handleSlideError = (e) => {
@@ -70,18 +39,23 @@ function HeroSlider() {
       <section className="relative h-[72vh] md:h-screen w-full overflow-hidden" aria-label="Peggy Beauty hero">
         <div className="absolute inset-0">
           <AnimatePresence mode="sync">
-            <motion.img
+            <motion.div
               key={activeSlide}
               animate={{ opacity: 1 }}
-              alt={slides[activeSlide].alt}
-              className="absolute inset-0 h-full w-full object-cover"
               exit={{ opacity: 0 }}
               initial={{ opacity: 0 }}
-              src={slides[activeSlide].image}
-              onError={handleSlideError}
-              style={{ display: 'block', objectPosition: slides[activeSlide].position, transformOrigin: 'center center', willChange: 'opacity' }}
               transition={{ duration: 1.2, ease: 'linear' }}
-            />
+              style={{ willChange: 'opacity' }}
+            >
+              <OptimizedImage
+                src={slides[activeSlide].image}
+                alt={slides[activeSlide].alt}
+                className="absolute inset-0 h-full w-full object-cover"
+                onError={handleSlideError}
+                style={{ display: 'block', objectPosition: slides[activeSlide].position, transformOrigin: 'center center' }}
+                sizes="100vw"
+              />
+            </motion.div>
           </AnimatePresence>
         </div>
 
@@ -89,40 +63,7 @@ function HeroSlider() {
 
         <img src="/images/hero-accent.svg" alt="" aria-hidden="true" className="absolute bottom-0 left-0 w-full pointer-events-none" />
 
-        <motion.div animate="visible" className="relative z-10 mx-auto h-full max-w-6xl px-6 text-white" initial="hidden" variants={contentVariants}>
-          <div className="h-full flex items-center">
-            <motion.div className="w-full md:w-1/2" variants={itemVariants}>
-              <motion.p
-                className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary sm:tracking-[0.28em]"
-                style={{ fontSize: 'clamp(1.1rem, 2.2vw + 0.6rem, 2rem)', fontWeight: 800 }}
-                variants={itemVariants}
-              >
-                Premium Hair Experience
-              </motion.p>
-
-              <motion.h1
-                className="text-4xl sm:text-5xl md:text-7xl font-heading leading-tight text-white hero-force-large"
-                style={{ fontSize: 'clamp(3rem, 10vw + 2rem, 16rem)', fontWeight: 900, lineHeight: 1 }}
-                variants={itemVariants}
-              >
-                Hair Extensions & Hair Color Specialists
-              </motion.h1>
-
-              <motion.p
-                className="mx-auto mt-6 max-w-3xl text-base leading-8 text-offwhite-cream/90 md:text-lg"
-                style={{ fontSize: 'clamp(1rem, 2.8vw + 0.8rem, 2rem)', fontWeight: 600 }}
-                variants={itemVariants}
-              >
-                We specialize in premium hair extensions and expert hair coloring, creating natural-looking, high-end transformations tailored to you.
-              </motion.p>
-
-              <motion.div className="mt-8 flex gap-6 items-center" variants={itemVariants}>
-                <Link className="rounded-md bg-primary px-8 py-4 text-xl font-semibold text-deep-black shadow-sm" to="/contact">Book Now</Link>
-                <Link className="rounded-md border border-white/30 px-8 py-4 text-xl" to="/services">Services</Link>
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
+        {/* hero content removed (buttons cleared) */}
 
         {/* Chevron removed per request */}
       </section>
@@ -132,8 +73,8 @@ function HeroSlider() {
           <div className="brand-marquee__track">
             <div className="brand-marquee__group">
               {brandLogos.map((brand) => (
-                <div key={brand.alt} className="brand-marquee__item">
-                  <img src={brand.src} alt={brand.alt} loading="lazy" onError={handleBrandError} className="h-10 md:h-14 object-contain" />
+                <div key={brand.src} className="brand-marquee__item">
+                  <OptimizedImage src={brand.src} alt={brand.alt} loading="lazy" onError={handleBrandError} className="h-10 md:h-14 object-contain" />
                 </div>
               ))}
             </div>
@@ -141,8 +82,8 @@ function HeroSlider() {
             {/* duplicate for seamless loop */}
             <div className="brand-marquee__group" aria-hidden>
               {brandLogos.map((brand) => (
-                <div key={brand.alt + '-dup'} className="brand-marquee__item">
-                  <img src={brand.src} alt={brand.alt} loading="lazy" className="h-10 md:h-14 object-contain" />
+                <div key={brand.src + '-dup'} className="brand-marquee__item">
+                  <OptimizedImage src={brand.src} alt={brand.alt} loading="lazy" className="h-10 md:h-14 object-contain" />
                 </div>
               ))}
             </div>

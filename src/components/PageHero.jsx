@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-function PageHero({ eyebrow, title, description, image = '/images/salon/peggy-portrait.png', showText = true }) {
+function PageHero({ eyebrow, title, description, image = '/images/services/hair-styling.png', showText = true }) {
   return (
     <section className="relative h-[56vh] md:h-[64vh] w-full overflow-hidden page-hero">
       <motion.img
@@ -14,13 +14,13 @@ function PageHero({ eyebrow, title, description, image = '/images/salon/peggy-po
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/30" />
+      <div className="absolute inset-0 hero-slider__overlay" />
 
       {showText && (
         <div className="relative z-10 mx-auto h-full max-w-6xl px-6 text-white flex items-center">
           <div>
             {eyebrow && <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-primary">{eyebrow}</p>}
-            <motion.h1 className="text-3xl md:text-5xl font-heading leading-tight" style={{ fontWeight: 900 }}>
+            <motion.h1 className="text-3xl md:text-5xl font-heading leading-tight text-white" style={{ fontSize: 'clamp(1.8rem, 4.5vw + 0.4rem, 3.5rem)', fontWeight: 900, color: '#ffffff' }}>
               {title}
             </motion.h1>
             {description && <p className="mt-4 max-w-3xl text-base text-offwhite-cream/90">{description}</p>}

@@ -1,22 +1,22 @@
 const services = [
   {
-    id: 'extensions',
+    id: 'makeup',
     order: 1,
-    title: 'Signature Hair Extensions',
-    image: '/images/salon/peggy-portrait.png',
+    title: 'Makeup & Bridal Beauty',
+    image: '/images/services/makeup.jpg',
     description:
-      'Custom tape-in, keratin bond, and weft extensions designed to blend seamlessly with your natural hair.',
+      'Professional makeup services including bridal, event, and editorial looks crafted for long wear and flawless finish.',
     features: [
-      'Personalized consultation and color match',
-      'Invisible placement for natural movement',
-      'Maintenance, styling, and aftercare guidance',
+      'Bridal makeup and trials',
+      'Soft-glam and evening looks',
+      'Airbrush and long-wear application',
     ],
   },
   {
     id: 'balayage',
     order: 2,
     title: 'Balayage & Blonde Services',
-    image: '/images/salon/about-peggy.png',
+    image: '/images/services/hair-color.png',
     description:
       'Soft, dimensional balayage and bright blonde services crafted for effortless grow-out and healthy-looking dimension.',
     features: [
@@ -29,7 +29,7 @@ const services = [
     id: 'colour',
     order: 3,
     title: 'Full Colour & Correction',
-    image: '/images/salon/salon-banner.png',
+    image: '/images/services/hair-color.png',
     description:
       'Precision colour, retouch, and correction services that restore balance while protecting hair integrity.',
     features: [
@@ -42,7 +42,7 @@ const services = [
     id: 'haircut',
     order: 4,
     title: 'Haircut & Styling',
-    image: '/images/salon/salon-interior.png',
+    image: '/images/services/hair-cutting.png',
     description:
       'Luxury haircut, blowout, and styling services tailored to your texture, lifestyle, and event needs.',
     features: [
@@ -55,7 +55,7 @@ const services = [
     id: 'treatments',
     order: 5,
     title: 'Repair & Treatment Rituals',
-    image: '/images/salon/peggy-portrait.png',
+    image: '/images/services/hair-treatments.png',
     description:
       'Restorative hair treatments designed to strengthen, hydrate, and add shine from root to tip.',
     features: [
@@ -68,13 +68,25 @@ const services = [
     id: 'bridal',
     order: 6,
     title: 'Bridal & Event Beauty',
-    image: '/images/salon/about-peggy.png',
+    image: '/images/services/makeup.jpg',
     description:
       'Effortless bridal styling, trial sessions, and polished event looks for your most meaningful moments.',
     features: [
       'Consultation and trial styling',
       'On-site bridal hair support',
       'Long-lasting finish for wedding day and events',
+    ],
+  },
+  {
+    id: 'threading',
+    order: 7,
+    title: 'Threading & Waxing',
+    image: '/images/services/threading_waxing.png',
+    description: 'Professional facial threading and waxing services delivered with care and hygiene-first techniques.',
+    features: [
+      'Eyebrow shaping and tinting',
+      'Facial waxing and maintenance',
+      'Comfort-focused approach',
     ],
   },
 ]

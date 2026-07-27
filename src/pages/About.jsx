@@ -16,7 +16,7 @@ function About() {
   }
 
   useEffect(() => {
-    document.title = 'About Peggy Beauty — Master Colorist & Blonde Specialist'
+    document.title = 'About Peggy Beauty — Master Colorist & Makeup Specialist'
 
     const setMeta = (name, content, attr = 'name') => {
       let el = document.querySelector(`meta[${attr}="${name}"]`)
@@ -28,10 +28,10 @@ function About() {
       el.setAttribute('content', content)
     }
 
-    setMeta('description', 'Learn about Peggy Zokaie, Master Colorist and Blonde Specialist at Peggy Beauty. Premium extensions, balayage, and color.')
-    setMeta('og:title', 'About Peggy Beauty — Master Colorist & Blonde Specialist', 'property')
-    setMeta('og:description', 'Learn about Peggy Zokaie, Master Colorist and Blonde Specialist at Peggy Beauty. Premium extensions, balayage, and color.', 'property')
-    setMeta('og:image', window.location.origin + '/images/salon/about-peggy.png', 'property')
+    setMeta('description', 'Learn about Peggy Zokaie, Master Colorist and Makeup Specialist at Peggy Beauty. Bespoke makeup, balayage, and color services.')
+    setMeta('og:title', 'About Peggy Beauty — Master Colorist & Makeup Specialist', 'property')
+    setMeta('og:description', 'Learn about Peggy Zokaie, Master Colorist and Makeup Specialist at Peggy Beauty. Bespoke makeup, balayage, and color services.', 'property')
+    setMeta('og:image', window.location.origin + '/images/about_page_banner.png', 'property')
     setMeta('og:type', 'article', 'property')
 
     // JSON-LD schema for About page
@@ -43,8 +43,8 @@ function About() {
         '@id': window.location.href,
       },
       'headline': 'About Peggy Beauty',
-      'description': 'Peggy Zokaie is a master colorist and blonde specialist with 18+ years experience, offering premium hair extensions and bespoke color services.',
-      'image': [window.location.origin + '/images/salon/about-peggy.png']
+      'description': 'Peggy Zokaie is a master colorist and makeup specialist with 18+ years experience, offering bespoke makeup, balayage and colour services.',
+      'image': [window.location.origin + '/images/about_page_banner.png']
     }
 
     let script = document.querySelector('script[data-jsonld-about]')
@@ -67,9 +67,9 @@ function About() {
     <>
       <PageHero
         eyebrow="Face Behind the Brand"
-        title="About Peggy Zokaie — Master Colorist & Blonde Specialist"
+        title="About Peggy Zokaie — Master Colorist & Makeup Specialist"
         description="Peggy brings over 18 years of global experience, combining technical mastery with a calm, guest-first approach."
-        image="/images/salon/about-peggy.png"
+        image="/images/about_page_banner.png"
       />
 
       <motion.section

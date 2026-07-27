@@ -6,6 +6,7 @@ import TestimonialsSection from '../components/TestimonialsSection'
 import VisitUsSection from '../components/VisitUsSection'
 import FAQSection from '../components/FAQSection'
 import ServiceCard from '../components/ServiceCard'
+import SEO from '../components/SEO'
 
 const featuredServices = [
   {
@@ -26,8 +27,16 @@ const featuredServices = [
 ]
 
 function Home() {
+  const meta = {
+    title: 'Peggy Beauty — Salon for Hair, Nails & Makeup',
+    description: 'Peggy Beauty provides professional hair, nail, and makeup services with expert stylists and personalized care. Book online or contact us to schedule.',
+    url: 'https://example.com/',
+    image: '/images/hero.png'
+  }
   return (
-    <div className="home">
+    <>
+      <SEO {...meta} />
+      <div className="home">
       <HeroSlider />
       <FounderSection />
       <ExtensionsFeature />
@@ -35,16 +44,9 @@ function Home() {
       <TestimonialsSection />
       <VisitUsSection />
       <FAQSection />
-      <section className="page" id="featured-services">
-          <h1 className="text-4xl md:text-5xl">Featured Services</h1>
-          <p>Choose a treatment and settle into an appointment that feels easy.</p>
-          <div className="page-grid mt-6">
-            {featuredServices.map((service) => (
-              <ServiceCard key={service.title} {...service} />
-            ))}
-          </div>
-        </section>
+      {/* Featured services removed per request */}
     </div>
+    </>
   )
 }
 

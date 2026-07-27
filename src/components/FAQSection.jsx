@@ -3,14 +3,14 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 const faqs = [
   {
-    question: 'What makes Define Hair Studio the best hair salon in Vaughan?',
+    question: 'What makes Peggy Beauty the best salon in Vaughan?',
     answer:
-      'Define Hair Studio combines advanced color work, premium hair extensions, and a luxury guest experience focused on healthy, natural-looking results.',
+      'Peggy Beauty combines advanced colour and makeup artistry with a luxury guest experience focused on healthy, natural-looking results.',
   },
   {
-    question: 'What types of hair extensions do you offer?',
+    question: 'What types of makeup services do you offer?',
     answer:
-      'We offer consultation-based extension services including tape-in, keratin bond, weft, and customized volume or length transformations.',
+      'We offer bridal, evening, soft-glam, and editorial makeup services, including airbrush and long-wear techniques tailored to skin tone and event needs.',
   },
   {
     question: 'How do I maintain balayage between appointments?',
@@ -54,12 +54,18 @@ function FAQSection() {
             <article key={faq.question} className="rounded-lg border bg-white p-4">
               <button aria-expanded={isOpen} className="flex w-full items-center justify-between" onClick={() => setOpenIndex(isOpen ? null : index)} type="button">
                 <span className="faq-question font-medium">{faq.question}</span>
-                <span className={`faq-icon ${isOpen ? 'rotate-45' : ''}`}>+</span>
+                <motion.span animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.22 }} className="faq-icon">+</motion.span>
               </button>
 
               <AnimatePresence initial={false}>
                 {isOpen && (
-                  <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }} initial={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.26 }}
+                    style={{ overflow: 'hidden' }}
+                  >
                     <p className="mt-3 text-muted-text" style={{ fontSize: 'var(--faq-answer-size)' }}>{faq.answer}</p>
                   </motion.div>
                 )}

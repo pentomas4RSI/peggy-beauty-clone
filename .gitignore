@@ -23,3 +23,15 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Env files — VITE_BOOKING_URL must never be baked into the production build
+.env
+.env.local
+
+# Backup/scratch files left by local editing tools — never site content
+*.bak_*
+*.corrupt
+public/images.bak_*/
+new_images/
+logclaud-frontend.txt
+pricing.txt

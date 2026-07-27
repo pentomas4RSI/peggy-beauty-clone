@@ -37,6 +37,12 @@
   z-index: 1;
 }
 
+/* Services page: remove overlay shadow so hero shows unshadowed */
+.services-hero .hero-slider__overlay {
+  background: transparent;
+  pointer-events: none;
+}
+
 .hero-slider__content {
   align-items: center;
   display: flex;

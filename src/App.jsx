@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+// FloatingBookButton removed per request (floating button hidden)
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'

@@ -1,5 +1,6 @@
 function Footer() {
   return (
+    <>
     <footer className="bg-deep-black text-offwhite-cream">
       <div className="h-4 border-y border-primary/35" style={{ backgroundImage: "repeating-linear-gradient(135deg, rgba(201,169,110,.95) 0 1px, transparent 1px 14px)" }} />
 
@@ -21,12 +22,12 @@ function Footer() {
               @peggybeauty.salon
             </a>
 
-            <a href="mailto:peggybeauty.info@gmail.com" className="flex items-center justify-center gap-3 text-sm text-offwhite-cream/75">
+            <a href="mailto:Pegahzokaie@yahoo.com" className="flex items-center justify-center gap-3 text-sm text-offwhite-cream/75">
               <svg width="18" height="14" viewBox="0 0 24 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                 <path d="M2 4.5A2.5 2.5 0 0 1 4.5 2h15A2.5 2.5 0 0 1 22 4.5v9A2.5 2.5 0 0 1 19.5 16H4.5A2.5 2.5 0 0 1 2 13.5v-9z" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M4.5 4L12 8.5 19.5 4" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              peggybeauty.info@gmail.com
+              Pegahzokaie@yahoo.com
             </a>
 
             <a href="https://www.facebook.com/share/1BXrvBoe1u/?mibextid=wwXIfr" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 text-sm text-offwhite-cream/75">
@@ -39,8 +40,14 @@ function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-primary/20 px-6 py-5 text-center text-sm text-offwhite-cream/55">© 2026 Peggy Beauty</div>
+      
     </footer>
+      <div className="bg-deep-black text-offwhite-cream/90 border-t border-primary/10">
+        <div className="mx-auto max-w-7xl px-6 py-3 text-center text-sm">
+          <p className="mb-0">Developed by <a href="mailto:amirfarhangkhojasteh@gmail.com" className="text-offwhite-cream/75">amirfarhangkhojasteh@gmail.com</a></p>
+        </div>
+      </div>
+    </>
   )
 }
 

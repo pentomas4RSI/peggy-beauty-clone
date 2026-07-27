@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { getBookingUrl } from '../config/booking'
 
 function BookingButton() {
   return (
-    <Link to="/contact" className="inline-flex items-center rounded bg-primary px-4 py-2 text-sm font-semibold text-deep-black">Book Now</Link>
+    <a href={getBookingUrl()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded bg-primary px-4 py-2 text-sm font-semibold text-deep-black">Book Now</a>
   )
 }
 

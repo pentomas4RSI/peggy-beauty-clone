@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown, Menu, Phone, X } from 'lucide-react'
+import OptimizedImage from './OptimizedImage'
 // Styles migrated to Tailwind in src/index.css
 
 const navigation = [
@@ -41,9 +42,9 @@ function Navbar() {
 
   return (
     <header className="w-full">
-      <a className="announcement flex items-center justify-center gap-2 py-3 text-sm md:text-base font-medium" href="tel:9052657444">
+      <a className="announcement flex items-center justify-center gap-2 py-3 text-sm md:text-base font-medium" href="tel:+14165187979">
         <Phone size={14} aria-hidden="true" />
-        <span>CALL NOW TO BOOK AN APPOINTMENT 905-265-7444</span>
+        <span>CALL NOW TO BOOK AN APPOINTMENT +14165187979</span>
       </a>
 
       <motion.div
@@ -55,7 +56,7 @@ function Navbar() {
           <div className="flex items-center justify-between h-32">
             <div className="flex min-w-0 items-center gap-6">
               <NavLink to="/" className="flex h-14 w-44 shrink-0 items-center justify-center" aria-label="Peggy Beauty home">
-                <img src="/images/logo.png" alt="Peggy Beauty" className="max-h-24 w-auto object-contain" />
+                <OptimizedImage src="/images/logo.png" alt="Peggy Beauty" className="max-h-24 w-auto object-contain" />
               </NavLink>
 
               <nav className="hidden md:flex items-center gap-12 text-base md:text-2xl text-deep-black">
@@ -77,7 +78,11 @@ function Navbar() {
             </div>
 
             <div className="flex items-center gap-4">
-              <NavLink to="/contact" className="hidden min-h-11 items-center rounded bg-primary px-6 py-3 md:px-8 md:py-3 text-lg font-semibold text-deep-black md:inline-flex">Book Now</NavLink>
+              {typeof window !== 'undefined' && window.location.pathname !== '/' && (
+                <a href={(import.meta.env.VITE_BOOKING_URL || 'http://localhost:4000')} onClick={() => {
+                  try { fetch((import.meta.env.VITE_BOOKING_URL || 'http://localhost:4000') + '/notify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source: 'navbar', page: window.location.pathname }) }).catch(() => {}); } catch(e){}
+                }} className="min-h-11 items-center rounded bg-primary px-6 py-3 md:px-8 md:py-3 text-lg font-semibold text-deep-black inline-flex" target="_blank" rel="noopener noreferrer">Book Now</a>
+              )}
               <button className="flex h-11 w-11 items-center justify-center text-deep-black md:hidden" onClick={() => setIsDrawerOpen(true)} aria-label="Open menu"><Menu /></button>
             </div>
           </div>
@@ -87,10 +92,10 @@ function Navbar() {
       <AnimatePresence>
         {isDrawerOpen && (
           <>
-            <motion.button animate={{ opacity: 1 }} aria-label="Close navigation menu" className="fixed inset-0 bg-black/40" exit={{ opacity: 0 }} initial={{ opacity: 0 }} onClick={closeDrawer} type="button" />
-            <motion.aside animate={{ x: 0 }} className="fixed right-0 top-0 h-full w-80 bg-white shadow-lg" exit={{ x: '100%' }} initial={{ x: '100%' }} transition={{ duration: 0.28, ease: 'easeOut' }}>
+            <motion.button animate={{ opacity: 1 }} aria-label="Close navigation menu" className="fixed inset-0 bg-black/40 z-50" exit={{ opacity: 0 }} initial={{ opacity: 0 }} onClick={closeDrawer} type="button" style={{ zIndex: 99999 }} />
+            <motion.aside animate={{ x: 0 }} className="fixed right-0 top-0 h-full w-80 bg-white shadow-lg z-50" exit={{ x: '100%' }} initial={{ x: '100%' }} transition={{ duration: 0.28, ease: 'easeOut' }} style={{ zIndex: 99999 }}>
               <div className="p-4 flex items-center justify-between">
-                <img src="/images/logo.png" alt="Peggy Beauty" className="h-10" />
+                <OptimizedImage src="/favicon.svg" alt="Peggy Beauty" className="h-10" />
                 <button aria-label="Close navigation menu" className="" onClick={closeDrawer} type="button"><X size={24} aria-hidden="true" /></button>
               </div>
               <nav className="p-4 flex flex-col gap-2">
@@ -115,8 +120,10 @@ function Navbar() {
                   </div>
                 ))}
               </nav>
-              <div className="p-4">
-                <NavLink to="/contact" onClick={closeDrawer} className="block w-full text-center rounded bg-primary py-2">Book Now</NavLink>
+                <div className="p-4">
+                {typeof window !== 'undefined' && window.location.pathname !== '/' && (
+                  <a href={(import.meta.env.VITE_BOOKING_URL || 'http://localhost:4000')} onClick={closeDrawer} className="block w-full text-center rounded bg-primary py-2" target="_blank" rel="noopener noreferrer">Book Now</a>
+                )}
               </div>
             </motion.aside>
           </>
